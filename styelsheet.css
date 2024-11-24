@@ -1,0 +1,79 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    background: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  .tesseract {
+    width: 250px;
+    height: 250px;
+    position: relative;
+    transform-style: preserve-3d;
+    animation: rotate 10s infinite linear;
+  }
+
+  .tesseract .face {
+    position: absolute;
+    width: 250px;
+    height: 250px;
+    background: rgba(0, 170, 255, 0.1); /* Transparent blue */
+    border: 1px solid rgba(0, 255, 255, 0.5); /* Light blue borders */
+    box-shadow: 0 0 30px rgba(0, 255, 255, 0.6), 0 0 60px rgba(0, 255, 255, 0.4);
+    backdrop-filter: blur(10px); /* Adds glass effect */
+  }
+
+  /* Position the cube's faces */
+  .tesseract .front  { transform: translateZ(125px); }
+  .tesseract .back   { transform: rotateY(180deg) translateZ(125px); }
+  .tesseract .right  { transform: rotateY(90deg) translateZ(125px); }
+  .tesseract .left   { transform: rotateY(-90deg) translateZ(125px); }
+  .tesseract .top    { transform: rotateX(90deg) translateZ(125px); }
+  .tesseract .bottom { transform: rotateX(-90deg) translateZ(125px); }
+
+  /* Glowing core effect */
+  .core {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 120px;
+    height: 120px;
+    background: radial-gradient(circle, rgba(0, 255, 255, 0.8) 0%, rgba(0, 170, 255, 0.3) 70%, rgba(0, 0, 0, 0) 100%);
+    border-radius: 50%;
+    box-shadow: 0 0 50px rgba(0, 255, 255, 0.8), 0 0 100px rgba(0, 255, 255, 0.5);
+    animation: glow-pulse 2s infinite alternate;
+  }
+
+  /* Rotating animation for the cube */
+  @keyframes rotate {
+    0% {
+      transform: rotateX(0deg) rotateY(0deg);
+    }
+    50% {
+      transform: rotateX(180deg) rotateY(180deg);
+    }
+    100% {
+      transform: rotateX(360deg) rotateY(360deg);
+    }
+  }
+
+  /* Pulsating glow animation for the core */
+  @keyframes glow-pulse {
+    0% {
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 1;
+    }
+    100% {
+      transform: translate(-50%, -50%) scale(1.2);
+      opacity: 0.7;
+    }
+  }
